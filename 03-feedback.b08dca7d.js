@@ -1,2 +1,0 @@
-!function(){var e,t=document.querySelector(".feedback-form"),a=document.querySelector(".feedback-form, textarea");t.addEventListener("submit",(function(e){e.preventDefault(),console.log("Отправить форму"),e.currentTarget.reset()})),a.addEventListener("input",(function(e){var t=e.currentTarget.value;localStorage.setItem("feadback-form-state",t)})),(e=localStorage.getItem("feadback-form-state"))&&(console.log(e),a.value=e)}();
-//# sourceMappingURL=03-feedback.b08dca7d.js.map
