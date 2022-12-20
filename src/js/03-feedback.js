@@ -7,25 +7,20 @@ const STORAGE_KEY = 'feadback-form-state';
 const formData = {};
 
 form.addEventListener('submit', onFormSubmit);
-textarea.addEventListener('input', throttle(onTextareaInput, 500));
 
 // вывод данных объекта в localestorage................//
 form.addEventListener('input', e => {
   // console.log(e.target.name);
   // console.log(e.target.value);
 
-  formData[e.target.name] = e.target.value;
+  formData[e.target.name] = e.target.value.trim();
   console.log('before', formData);
 
   const jsonValue = JSON.stringify(formData);
   console.log('after', jsonValue);
+  localStorage.setItem('STORAGE_KEY', JSON.stringify(formData));
   console.log('parse', JSON.parse(jsonValue));
 });
-
-localStorage.setItem('STORAGE_KEY', JSON.stringify(formData));
-
-const response = localStorage.getItem('formData');
-console.log(JSON.parse(response));
 //.....................................................//
 
 populateTextarea();
@@ -33,23 +28,28 @@ populateTextarea();
 function onFormSubmit(evt) {
   evt.preventDefault();
 
+  console.log(formData);
+
   console.log('Отправить форму');
   evt.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
 };
 
-function onTextareaInput(evt) {
-  const message = evt.target.value;
-  localStorage.setItem(STORAGE_KEY, message);
-  console.log(message);
-};
 
 function populateTextarea() {
   const saveMessage = localStorage.getItem(STORAGE_KEY);
 
+  try{
   if (saveMessage) {
-    console.log(saveMessage);
-    textarea.value = saveMessage.name;
+    console.log(formData = JSON.parse(saveMessage));
+
+    Object.fromEntries(formData).forEach(function(elements) {
+      form.elements[key] = value;
+
+      console.log(elements);
+    });
+    }
+  } catch {
 
   }
 };
