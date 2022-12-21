@@ -43,10 +43,8 @@ function populateTextarea() {
   if (saveMessage) {
     console.log(formData = JSON.parse(saveMessage));
 
-    Object.fromEntries(formData).forEach(function(elements) {
+    Object.fromEntries(formData).forEach(([key, value]) => {
       form.elements[key] = value;
-
-      console.log(elements);
     });
     }
   } catch {
